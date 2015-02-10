@@ -7,21 +7,28 @@
 //
 
 #import "ViewController.h"
+#import "TTPLTestReportManager.h"
 
 @interface ViewController ()
+
+- (IBAction)openMailComposer;
 
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+  [super viewDidLoad];
+  // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)openMailComposer {
+  [[TTPLTestReportManager sharedInstance] openMailWithReport];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 @end

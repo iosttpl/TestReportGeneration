@@ -96,4 +96,46 @@
   return isReportGenerated;
 }
 
+#pragma mark - Send Mail With Report -
+- (void)openMailWithReport {
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                       NSUserDomainMask, YES);
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  NSString *appName = info[keyOfBundleName];
+
+  NSString *fileName = [NSString stringWithFormat:reportFileName, appName];
+  NSString *filePath =
+      [documentsDirectory stringByAppendingPathComponent:fileName];
+  if ([[NSFileManager defaultManager] fileExistsAtPath:filePath] &&
+      [MFMailComposeViewController canSendMail]) {
+
+    /// Open mail composer to send a report file
+    MFMailComposeViewController *mailComposer =
+        [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+    NSString *subject = [NSString stringWithFormat:emailSubject, appName];
+    NSString *mailBody = [NSString stringWithFormat:emailBody, appName];
+    // Set the subject of email
+    [mailComposer setSubject:subject];
+    [mailComposer setMessageBody:mailBody isHTML:NO];
+    [mailComposer addAttachmentData:[NSData dataWithContentsOfFile:filePath]
+                           mimeType:mimeType
+                           fileName:subject];
+    [[UIApplication sharedApplication].keyWindow.rootViewController
+        presentViewController:mailComposer
+                     animated:YES
+                   completion:nil];
+  }
+}
+
+#pragma mark - Mail Composer Delegates -
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error {
+  if (error) {
+    NSLog(@"Mail compose error : %@", error);
+  }
+  [controller dismissViewControllerAnimated:YES completion:nil];
+}
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MessageUI/MessageUI.h>
 
 /*!
  @discussion This is the manager class to handle the report generation and
@@ -24,7 +25,8 @@
 
  */
 
-@interface TTPLTestReportManager : NSObject
+@interface TTPLTestReportManager
+    : NSObject <MFMailComposeViewControllerDelegate>
 
 /// @name Getter
 
@@ -71,5 +73,12 @@
  @since 1.0
  */
 - (BOOL)generateReport;
+
+/*!
+ @abstract Open a mail application along with the created test report file.
+
+ @since 1.0
+ */
+- (void)openMailWithReport;
 
 @end
