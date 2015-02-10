@@ -47,5 +47,95 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
+    <key>TC6</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC7</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC8</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC9</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC10</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC11</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC12</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC13</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC14</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC15</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
 </dict>
 </plist>

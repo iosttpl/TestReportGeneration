@@ -96,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				5060B0AB1A88944B006660C7 /* Demo */,
-				5060B0A91A88935A006660C7 /* TTPLTestCase.plist */,
 				5060B08D1A889326006660C7 /* Main.storyboard */,
 				5060B0901A889326006660C7 /* Images.xcassets */,
 				5060B0921A889326006660C7 /* LaunchScreen.xib */,
@@ -146,6 +145,7 @@
 		5060B0AF1A889499006660C7 /* TCManager */ = {
 			isa = PBXGroup;
 			children = (
+				5060B0A91A88935A006660C7 /* TTPLTestCase.plist */,
 				5060B0AC1A889494006660C7 /* TTPLTestReportManager.h */,
 				5060B0AD1A889494006660C7 /* TTPLTestReportManager.m */,
 				50BA16F21A8A0962005C733B /* Model */,

@@ -14,6 +14,8 @@
 @interface TTPLTestReportManager () {
   /// Store test case result object in dictionary based on the testcase ID.
   NSMutableDictionary *_testResultDictionary;
+
+  /// TTPLTestCase.plist file content.
   NSDictionary *_testCaseDictionary;
 }
 
@@ -23,6 +25,7 @@
 
 #pragma mark - Share Instance -
 + (instancetype)sharedInstance {
+  /// If you want to disable the test report generator then set this flag.
   if (disableReportGenerator) {
     return nil;
   }
@@ -35,7 +38,9 @@
 
 - (instancetype)init {
   if (self = [super init]) {
+    /// This will hold all the TestCase objects.
     _testResultDictionary = [[NSMutableDictionary alloc] init];
+    /// Path of the TTPLTestCase.plist file
     NSString *path =
         [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
     _testCaseDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -50,15 +55,20 @@
               comments:(NSString *)comments {
   BOOL isReportUpdated = NO;
   if (!testCaseId.length) {
+    /// Test case id should not be empty
     return isReportUpdated;
   }
 
+  /// Read the test case releated content form the plist file.
+  /// Exampe  Module : Login, Objecive : value, ExpectedResult : value
   NSDictionary *testCaseDetailDictionary =
       [_testCaseDictionary valueForKey:testCaseId];
   if (!testCaseDetailDictionary) {
     return isReportUpdated;
   }
 
+  /// Create test case model and store it on the dictionary by using test case
+  /// id.
   TTPLTestCase *testCase = [[TTPLTestCase alloc] init];
   testCase.tcId = testCaseId;
   testCase.tcCategory = testCaseDetailDictionary[category];
@@ -79,6 +89,8 @@
   isReportGenerated = [TTPLReportFileGenerator
       generateReportStringWithTestCaseDictionary:_testResultDictionary];
   if (isReportGenerated) {
+    /// Once file created remove all the existing testcase model from the
+    /// dictionary
     [_testResultDictionary removeAllObjects];
   }
   return isReportGenerated;

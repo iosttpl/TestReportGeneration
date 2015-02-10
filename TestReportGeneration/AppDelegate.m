@@ -23,11 +23,11 @@
     @"Password" : @"welcome123"
   };
 
-  for (int i = 1; i <= 5; i++) {
+  for (int i = 1; i <= 15; i++) {
     [[TTPLTestReportManager sharedInstance]
         testCaseWithID:[NSString stringWithFormat:@"TC%d", i]
                 inputs:input
-                status:(i % 2) ? YES : NO
+                status:(i % 4) ? YES : NO
               comments:nil];
   }
 
