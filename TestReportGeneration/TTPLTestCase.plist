@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>TC1</key>
+	<dict>
+		<key>Module</key>
+		<string>Login</string>
+		<key>Objective</key>
+		<string>Login with correct username and password</string>
+		<key>ExpectedResult</key>
+		<string>Application should allow the user enter the main page of the application.</string>
+	</dict>
+    <key>TC2</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC3</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC4</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+    <key>TC5</key>
+    <dict>
+        <key>Module</key>
+        <string>Login</string>
+        <key>Objective</key>
+        <string>Login with correct username and password</string>
+        <key>ExpectedResult</key>
+        <string>Application should allow the user enter the main page of the application.</string>
+    </dict>
+</dict>
+</plist>
