@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>TC01</key>
+	<key>1</key>
 	<dict>
 		<key>Module</key>
 		<string>Login</string>
@@ -11,7 +11,7 @@
 		<key>ExpectedResult</key>
 		<string>Application should allow the user enter the main page of the application.</string>
 	</dict>
-    <key>TC02</key>
+    <key>2</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -20,7 +20,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC03</key>
+    <key>3</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -29,7 +29,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC04</key>
+    <key>4</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -38,7 +38,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC05</key>
+    <key>5</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -47,7 +47,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC06</key>
+    <key>6</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -56,7 +56,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC07</key>
+    <key>7</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -65,7 +65,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC08</key>
+    <key>8</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -74,7 +74,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC09</key>
+    <key>9</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -83,7 +83,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC10</key>
+    <key>10</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -92,7 +92,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC11</key>
+    <key>11</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -101,7 +101,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC12</key>
+    <key>12</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -110,7 +110,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC13</key>
+    <key>13</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -119,7 +119,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC14</key>
+    <key>14</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -128,7 +128,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC15</key>
+    <key>15</key>
     <dict>
         <key>Module</key>
         <string>Login</string>

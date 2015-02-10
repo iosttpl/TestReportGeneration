@@ -71,26 +71,10 @@
                   testCaseDictionary:(NSMutableDictionary *)testCaseDictionary {
 
   NSArray *arrayOfTestCases = [testCaseDictionary allKeys];
-  if (arrayOfTestCases.count) {
 
-    NSInteger testCaseId = [arrayOfTestCases[0] integerValue];
-    if (testCaseId) {
-      /// If test case id is an number then
-      arrayOfTestCases = [arrayOfTestCases
-          sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-              if ([obj1 intValue] == [obj2 intValue])
-                return NSOrderedSame;
-              else if ([obj1 intValue] < [obj2 intValue])
-                return NSOrderedAscending;
-              else
-                return NSOrderedDescending;
-          }];
-    } else {
-      // If it is a string the sort by localizedCaseInsensitiveCompare
-      arrayOfTestCases = [arrayOfTestCases
-          sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    }
-  }
+  // If it is a string the sort by localizedCaseInsensitiveCompare
+  arrayOfTestCases = [arrayOfTestCases
+      sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
 
   for (NSString *testCaseKey in arrayOfTestCases) {
     TTPLTestCase *testCase = testCaseDictionary[testCaseKey];
