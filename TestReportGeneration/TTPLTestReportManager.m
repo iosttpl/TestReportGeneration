@@ -98,17 +98,15 @@
 
 #pragma mark - Send Mail With Report -
 - (void)openMailWithReport {
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                       NSUserDomainMask, YES);
-  NSString *documentsDirectory = [paths objectAtIndex:0];
-  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  NSString *appName = info[keyOfBundleName];
 
-  NSString *fileName = [NSString stringWithFormat:reportFileName, appName];
-  NSString *filePath =
-      [documentsDirectory stringByAppendingPathComponent:fileName];
+  NSString *filePath = [TTPLReportFileGenerator reportFilePath];
+
   if ([[NSFileManager defaultManager] fileExistsAtPath:filePath] &&
       [MFMailComposeViewController canSendMail]) {
+
+    /// Get app name
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+    NSString *appName = info[keyOfBundleName];
 
     /// Open mail composer to send a report file
     MFMailComposeViewController *mailComposer =
@@ -138,4 +136,5 @@
   }
   [controller dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

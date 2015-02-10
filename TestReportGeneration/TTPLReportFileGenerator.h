@@ -38,4 +38,13 @@
 + (BOOL)generateReportStringWithTestCaseDictionary:
         (NSMutableDictionary *)dictionary;
 
+/*!
+ @abstract Returns the file path of the Test Report file.
+
+ @return Returns the file path of the Test Report file.
+
+ @since 1.0
+ */
++ (NSString *)reportFilePath;
+
 @end

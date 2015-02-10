@@ -140,6 +140,23 @@
 
   /// Create Appname-TestReport.html file on the document directory.
   BOOL isReportGenerated;
+  NSString *filePath = [self reportFilePath];
+
+  NSError *error;
+  [fileContent writeToFile:filePath
+                atomically:YES
+                  encoding:NSUTF8StringEncoding
+                     error:&error];
+  if (error) {
+    NSLog(@"Report not generated : %@", error);
+  } else {
+    isReportGenerated = YES;
+  }
+  return isReportGenerated;
+}
+
+#pragma mark - Report File Path -
++ (NSString *)reportFilePath {
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                        NSUserDomainMask, YES);
   NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -150,19 +167,6 @@
   NSString *filePath =
       [documentsDirectory stringByAppendingPathComponent:fileName];
   NSLog(@"filePath %@", filePath);
-
-  NSError *error;
-  [fileContent writeToFile:filePath
-                atomically:YES
-                  encoding:NSUTF8StringEncoding
-                     error:&error];
-
-  if (error) {
-    NSLog(@"Report not generated : %@", error);
-  } else {
-    isReportGenerated = YES;
-  }
-  return isReportGenerated;
+  return filePath;
 }
-
 @end
