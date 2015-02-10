@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>TC1</key>
+	<key>TC01</key>
 	<dict>
 		<key>Module</key>
 		<string>Login</string>
@@ -11,7 +11,7 @@
 		<key>ExpectedResult</key>
 		<string>Application should allow the user enter the main page of the application.</string>
 	</dict>
-    <key>TC2</key>
+    <key>TC02</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -20,7 +20,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC3</key>
+    <key>TC03</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -29,7 +29,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC4</key>
+    <key>TC04</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -38,7 +38,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC5</key>
+    <key>TC05</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -47,7 +47,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC6</key>
+    <key>TC06</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -56,7 +56,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC7</key>
+    <key>TC07</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -65,7 +65,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC8</key>
+    <key>TC08</key>
     <dict>
         <key>Module</key>
         <string>Login</string>
@@ -74,7 +74,7 @@
         <key>ExpectedResult</key>
         <string>Application should allow the user enter the main page of the application.</string>
     </dict>
-    <key>TC9</key>
+    <key>TC09</key>
     <dict>
         <key>Module</key>
         <string>Login</string>

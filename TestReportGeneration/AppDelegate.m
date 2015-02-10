@@ -24,8 +24,12 @@
   };
 
   for (int i = 1; i <= 15; i++) {
+    NSString *index = [NSString stringWithFormat:@"%d", i];
+    if (i < 10) {
+      index = [NSString stringWithFormat:@"0%d", i];
+    }
     [[TTPLTestReportManager sharedInstance]
-        testCaseWithID:[NSString stringWithFormat:@"TC%d", i]
+        testCaseWithID:[NSString stringWithFormat:@"TC%@", index]
                 inputs:input
                 status:(i % 4) ? YES : NO
               comments:nil];

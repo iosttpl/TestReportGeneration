@@ -39,7 +39,7 @@ static NSString *const tableRow =
     @"<TD CLASS =\"testResultTableRow\"> %@ </TD>"
     @"<TD CLASS =\"testResultTableRow\"> %@ </TD>" @"%@"
     @"<TD CLASS =\"testResultTableRow\"> %@ </TD> </TR> <TR></TR>";
-/// Status tag.
+
 /// Status tag need to update the color based on the test case success/fail
 static NSString *const statusTag = @"<TD CLASS =\"%@\"> %@ </TD>";
 

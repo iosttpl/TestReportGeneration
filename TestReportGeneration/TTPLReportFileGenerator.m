@@ -12,6 +12,7 @@
 
 @implementation TTPLReportFileGenerator
 
+#pragma mark - Start Report Generation Process -
 + (BOOL)generateReportStringWithTestCaseDictionary:
             (NSMutableDictionary *)dictionary {
   NSString *reportString;
@@ -25,13 +26,20 @@
   /// Update test cases
   reportString =
       [self updateTestCaseOnReport:reportString testCaseDictionary:dictionary];
+
+  /// Create html file
   BOOL isReportGenerated = [self createReportFileWtihContent:reportString];
+
   return isReportGenerated;
 }
 
+#pragma mark - Add App Info -
 + (NSString *)updateAppInfoWithReportString:(NSString *)reportString {
+
   NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  /// App name
   NSString *appName = info[keyOfBundleName];
+  /// Version number  along with Build number.
   NSString *version =
       [NSString stringWithFormat:@"%@ (%@)", info[keyOfAppVersion],
                                  info[keyOfBundleVersion]];
@@ -58,17 +66,39 @@
   return reportString;
 }
 
+#pragma mark - Add Test Case Rows -
 + (NSString *)updateTestCaseOnReport:(NSString *)reportString
                   testCaseDictionary:(NSMutableDictionary *)testCaseDictionary {
+
   NSArray *arrayOfTestCases = [testCaseDictionary allKeys];
-  arrayOfTestCases = [arrayOfTestCases
-      sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+  if (arrayOfTestCases.count) {
+
+    NSInteger testCaseId = [arrayOfTestCases[0] integerValue];
+    if (testCaseId) {
+      /// If test case id is an number then
+      arrayOfTestCases = [arrayOfTestCases
+          sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+              if ([obj1 intValue] == [obj2 intValue])
+                return NSOrderedSame;
+              else if ([obj1 intValue] < [obj2 intValue])
+                return NSOrderedAscending;
+              else
+                return NSOrderedDescending;
+          }];
+    } else {
+      // If it is a string the sort by localizedCaseInsensitiveCompare
+      arrayOfTestCases = [arrayOfTestCases
+          sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    }
+  }
 
   for (NSString *testCaseKey in arrayOfTestCases) {
     TTPLTestCase *testCase = testCaseDictionary[testCaseKey];
-    /// Status string
+    /// Status cell color base on the status (PASS/FAIL)
     NSString *statusCSS = (testCase.tcStatus) ? statusPassCSS : statusFailCSS;
+    /// Status string (PASS/FAIL)
     NSString *statusString = (testCase.tcStatus) ? statusPass : statusFail;
+    /// Update status Table Row Tag
     NSString *statusTagWithValues =
         [NSString stringWithFormat:statusTag, statusCSS, statusString];
 
@@ -77,6 +107,7 @@
     if (testCase.tcInputs) {
       NSArray *inputKeys = testCase.tcInputs.allKeys;
       for (NSString *key in inputKeys) {
+        /// Create input string
         inputString =
             [inputString stringByAppendingFormat:@"%@ : %@ <br> ", key,
                                                  testCase.tcInputs[key]];
@@ -89,6 +120,7 @@
     NSString *commentsString =
         (testCase.tcComments.length) ? testCase.tcComments : notAvailableString;
 
+    /// create new Table Row
     NSString *testCaseString = [NSString
         stringWithFormat:tableRow, testCase.tcId, testCase.tcCategory,
                          testCase.tcObjective, testCase.tcExpectedResult,
@@ -103,7 +135,10 @@
   return reportString;
 }
 
+#pragma mark - Report File Create -
 + (BOOL)createReportFileWtihContent:(NSString *)fileContent {
+
+  /// Create Appname-TestReport.html file on the document directory.
   BOOL isReportGenerated;
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                        NSUserDomainMask, YES);
@@ -129,4 +164,5 @@
   }
   return isReportGenerated;
 }
+
 @end
