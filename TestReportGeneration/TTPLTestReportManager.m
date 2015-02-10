@@ -9,14 +9,7 @@
 #import "TTPLTestReportManager.h"
 #import "TTPLTestCase.h"
 #import "TTPLReportFileGenerator.h"
-
-// You want to enable reporter then set this flag TRUE
-static const BOOL disableReportGenerator = YES;
-
-static NSString *const fileName = @"TTPLTestCase.plist";
-static NSString *const category = @"Module";
-static NSString *const objective = @"Objective";
-static NSString *const expectedResult = @"ExpectedResult";
+#import "TRConstant.h"
 
 @interface TTPLTestReportManager () {
   /// Store test case result object in dictionary based on the testcase ID.

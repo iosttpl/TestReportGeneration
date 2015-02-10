@@ -27,7 +27,7 @@
     [[TTPLTestReportManager sharedInstance]
         testCaseWithID:[NSString stringWithFormat:@"TC%d", i]
                 inputs:input
-                status:YES
+                status:(i % 2) ? YES : NO
               comments:nil];
   }
 

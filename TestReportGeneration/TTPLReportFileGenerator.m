@@ -8,41 +8,7 @@
 
 #import "TTPLReportFileGenerator.h"
 #import "TTPLTestCase.h"
-
-/// Template file name
-static NSString *const templateFileName = @"TTPLReportTemplate.html";
-
-static NSString *const reportFileName = @"%@-TestReport.html";
-
-/// Placeholder on the template file
-static NSString *const templatePlaceHolderAppName = @"#AppName#";
-static NSString *const templatePlaceHolderVersion = @"#VersionNumber#";
-static NSString *const templatePlaceHolderDate = @"#Date#";
-static NSString *const templatePlaceHolderTestCase = @"<TR></TR>";
-
-/// Test case row.
-static NSString *const tableRow =
-    @"<TR> <TD CLASS =\"testResultTableRow\"> %@ </TD>"
-    @"<TD CLASS =\"testResultTableRow\"> %@ </TD>"
-    @"<TD CLASS =\"testResultTableRow\"> %@ </TD>"
-    @"<TD CLASS =\"testResultTableRow\"> %@ </TD>"
-    @"<TD CLASS =\"testResultTableRow\"> %@ </TD>"
-    @"<TD CLASS =\"testResultTableRow\"> %@ </TD>"
-    @"<TD CLASS =\"testResultTableRow\"> %@ </TD> </TR> <TR></TR>";
-
-/// Bundle info dictionary keys
-static NSString *const keyOfAppVersion = @"CFBundleShortVersionString";
-static NSString *const keyOfBundleVersion = @"CFBundleVersion";
-
-static NSString *const keyOfBundleName = @"CFBundleName";
-
-/// Report date format
-static NSString *const reportDateFormat = @"MMM dd, YYYY HH:mm:ss";
-
-static NSString *const emptyString = @"";
-static NSString *const notAvailableString = @"N/A";
-static NSString *const statusPass = @"PASS";
-static NSString *const statusFail = @"FAIL";
+#import "TRConstant.h"
 
 @implementation TTPLReportFileGenerator
 
@@ -101,7 +67,10 @@ static NSString *const statusFail = @"FAIL";
   for (NSString *testCaseKey in arrayOfTestCases) {
     TTPLTestCase *testCase = testCaseDictionary[testCaseKey];
     /// Status string
+    NSString *statusCSS = (testCase.tcStatus) ? statusPassCSS : statusFailCSS;
     NSString *statusString = (testCase.tcStatus) ? statusPass : statusFail;
+    NSString *statusTagWithValues =
+        [NSString stringWithFormat:statusTag, statusCSS, statusString];
 
     /// Format input values.
     NSString *inputString = emptyString;
@@ -123,7 +92,7 @@ static NSString *const statusFail = @"FAIL";
     NSString *testCaseString = [NSString
         stringWithFormat:tableRow, testCase.tcId, testCase.tcCategory,
                          testCase.tcObjective, testCase.tcExpectedResult,
-                         inputString, statusString, commentsString];
+                         inputString, statusTagWithValues, commentsString];
 
     /// Updated report
     reportString = [reportString

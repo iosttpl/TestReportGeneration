@@ -53,6 +53,7 @@
 		5060B0B71A88E188006660C7 /* TTPLReportFileGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPLReportFileGenerator.h; sourceTree = "<group>"; };
 		5060B0B81A88E188006660C7 /* TTPLReportFileGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPLReportFileGenerator.m; sourceTree = "<group>"; };
 		50BA16EE1A89C75D005C733B /* TTPLReportTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TTPLReportTemplate.html; sourceTree = "<group>"; };
+		50BA16F11A8A08EA005C733B /* TRConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRConstant.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,13 +148,38 @@
 			children = (
 				5060B0AC1A889494006660C7 /* TTPLTestReportManager.h */,
 				5060B0AD1A889494006660C7 /* TTPLTestReportManager.m */,
-				5060B0B01A889B5D006660C7 /* TTPLTestCase.h */,
-				5060B0B11A889B5D006660C7 /* TTPLTestCase.m */,
-				5060B0B71A88E188006660C7 /* TTPLReportFileGenerator.h */,
-				5060B0B81A88E188006660C7 /* TTPLReportFileGenerator.m */,
-				50BA16EE1A89C75D005C733B /* TTPLReportTemplate.html */,
+				50BA16F21A8A0962005C733B /* Model */,
+				50BA16F41A8A0983005C733B /* FileGenerator */,
+				50BA16F31A8A0970005C733B /* Template */,
+				50BA16F11A8A08EA005C733B /* TRConstant.h */,
 			);
 			name = TCManager;
+			sourceTree = "<group>";
+		};
+		50BA16F21A8A0962005C733B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5060B0B01A889B5D006660C7 /* TTPLTestCase.h */,
+				5060B0B11A889B5D006660C7 /* TTPLTestCase.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		50BA16F31A8A0970005C733B /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				50BA16EE1A89C75D005C733B /* TTPLReportTemplate.html */,
+			);
+			name = Template;
+			sourceTree = "<group>";
+		};
+		50BA16F41A8A0983005C733B /* FileGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				5060B0B71A88E188006660C7 /* TTPLReportFileGenerator.h */,
+				5060B0B81A88E188006660C7 /* TTPLReportFileGenerator.m */,
+			);
+			name = FileGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
