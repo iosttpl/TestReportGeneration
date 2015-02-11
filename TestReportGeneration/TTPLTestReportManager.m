@@ -183,7 +183,7 @@
   }
   [controller dismissViewControllerAnimated:YES
                                  completion:^{
-                                     _draggableView.hidden = enableReportButton;
+                                     _draggableView.hidden = !enableReportButton;
                                  }];
 }
 
