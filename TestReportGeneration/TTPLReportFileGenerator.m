@@ -90,6 +90,8 @@
     NSString *inputString = emptyString;
     if (testCase.tcInputs) {
       NSArray *inputKeys = testCase.tcInputs.allKeys;
+      inputKeys = [inputKeys
+          sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
       for (NSString *key in inputKeys) {
         /// Create input string
         inputString =
