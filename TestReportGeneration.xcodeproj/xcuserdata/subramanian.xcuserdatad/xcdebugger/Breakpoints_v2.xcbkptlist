@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TestReportGeneration/TTPLTestReportManager.m"
-            timestampString = "445263968.209327"
+            filePath = "TestReportGeneration/TTPLReportFileGenerator.m"
+            timestampString = "445328376.29959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "-mailComposeController:didFinishWithResult:error:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "+updateAppInfoWithReportString:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

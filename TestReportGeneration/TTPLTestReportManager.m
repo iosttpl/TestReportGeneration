@@ -42,7 +42,7 @@
     _testResultDictionary = [[NSMutableDictionary alloc] init];
     /// Path of the TTPLTestCase.plist file
     NSString *path =
-        [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+        [[NSBundle mainBundle] pathForResource:testCaseListFileName ofType:nil];
     _testCaseDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
   }
   return self;
@@ -83,17 +83,17 @@
 }
 
 #pragma mark - Report Generator -
-- (BOOL)generateReport {
-  BOOL isReportGenerated = NO;
-  // Create Report file
-  isReportGenerated = [TTPLReportFileGenerator
-      generateReportStringWithTestCaseDictionary:_testResultDictionary];
-  if (isReportGenerated) {
-    /// Once file created remove all the existing testcase model from the
-    /// dictionary
-    [_testResultDictionary removeAllObjects];
-  }
-  return isReportGenerated;
+- (void)generateReport {
+  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  NSString *appName = info[keyOfBundleName];
+  UIAlertView *testerNameAlertView =
+      [[UIAlertView alloc] initWithTitle:appName
+                                 message:alertMessage
+                                delegate:self
+                       cancelButtonTitle:alertOkButtonText
+                       otherButtonTitles:nil, nil];
+  testerNameAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+  [testerNameAlertView show];
 }
 
 #pragma mark - Send Mail With Report -
@@ -135,6 +135,26 @@
     NSLog(@"Mail compose error : %@", error);
   }
   [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Alert View Delegate -
+- (void)alertView:(UIAlertView *)alertView
+    didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  UITextField *textField = [alertView textFieldAtIndex:0];
+  if (textField) {
+    self.testerName = textField.text;
+    if (!self.testerName.length) {
+      self.testerName = notAvailableString;
+    }
+  }
+  // Create Report file
+  BOOL isReportGenerated = [TTPLReportFileGenerator
+      generateReportStringWithTestCaseDictionary:_testResultDictionary];
+  if (isReportGenerated) {
+    /// Once file created remove all the existing testcase model from the
+    /// dictionary
+    [_testResultDictionary removeAllObjects];
+  }
 }
 
 @end

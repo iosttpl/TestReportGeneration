@@ -26,7 +26,10 @@
  */
 
 @interface TTPLTestReportManager
-    : NSObject <MFMailComposeViewControllerDelegate>
+    : NSObject <MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
+
+/// Report generator name.
+@property(nonatomic, strong) NSString *testerName;
 
 /// @name Getter
 
@@ -68,11 +71,9 @@
  @discussion This will read the report template file and update the file with
  the list of test cases. Finally create a HTML report file.
 
- @return Returns TREU if the report file is created Else FALSE.
-
  @since 1.0
  */
-- (BOOL)generateReport;
+- (void)generateReport;
 
 /*!
  @abstract Open a mail application along with the created test report file.

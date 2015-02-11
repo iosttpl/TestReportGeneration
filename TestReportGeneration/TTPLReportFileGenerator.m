@@ -9,6 +9,8 @@
 #import "TTPLReportFileGenerator.h"
 #import "TTPLTestCase.h"
 #import "TRConstant.h"
+#import "TTPLTestReportManager.h"
+#import <sys/utsname.h>
 
 @implementation TTPLReportFileGenerator
 
@@ -53,6 +55,21 @@
   reportString = [reportString
       stringByReplacingOccurrencesOfString:templatePlaceHolderVersion
                                 withString:version];
+
+  // Name
+  reportString = [reportString
+      stringByReplacingOccurrencesOfString:templatePlaceHolderName
+                                withString:[TTPLTestReportManager
+                                                   sharedInstance].testerName];
+
+  // Device
+  UIDevice *currentDevice = [UIDevice currentDevice];
+  NSString *deviceOS =
+      [NSString stringWithFormat:@"%@ %@%@", [self deviceName], iOSName,
+                                 currentDevice.systemVersion];
+  reportString = [reportString
+      stringByReplacingOccurrencesOfString:templatePlaceHolderDevice
+                                withString:deviceOS];
 
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
   [formatter setDateFormat:reportDateFormat];
@@ -154,5 +171,26 @@
       [documentsDirectory stringByAppendingPathComponent:fileName];
   NSLog(@"filePath %@", filePath);
   return filePath;
+}
+
+#pragma mark - Device Model Name -
++ (NSString *)deviceName {
+  struct utsname systemInfo;
+  uname(&systemInfo);
+
+  NSString *deviceModel = [NSString stringWithCString:systemInfo.machine
+                                             encoding:NSUTF8StringEncoding];
+
+  NSString *path =
+      [[NSBundle mainBundle] pathForResource:deviceModelListFileName
+                                      ofType:nil];
+  NSDictionary *modelListDictionary =
+      [NSDictionary dictionaryWithContentsOfFile:path];
+  NSString *modelName = [modelListDictionary valueForKey:deviceModel];
+  if (!modelName.length) {
+    modelName = deviceModel;
+  }
+
+  return modelName;
 }
 @end

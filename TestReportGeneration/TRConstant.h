@@ -9,17 +9,29 @@
 #ifndef TestReportGeneration_TRConstant_h
 #define TestReportGeneration_TRConstant_h
 
+//*****************************************************************************//
+//  Configuration
+//*****************************************************************************//
+
 #pragma mark - Configuration
 // You want to enable reporter then set this flag TRUE
 static const BOOL disableReportGenerator = NO;
 
+//*****************************************************************************//
+//  Report Manager
+//*****************************************************************************//
+
 #pragma mark - Report Manager -
 
 /// Plist
-static NSString *const fileName = @"TTPLTestCase.plist";
+static NSString *const testCaseListFileName = @"TTPLTestCase.plist";
 static NSString *const category = @"Module";
 static NSString *const objective = @"Objective";
 static NSString *const expectedResult = @"ExpectedResult";
+
+/// Device Model List
+static NSString *const deviceModelListFileName = @"DeviceModelList.plist";
+
 /// Email
 static NSString *const emailSubject = @"%@ - Test Report";
 static NSString *const emailBody =
@@ -27,6 +39,16 @@ static NSString *const emailBody =
     @"Please find an attachment here. \n \n -------- \n Thanks";
 
 static NSString *const mimeType = @"text/html";
+
+//*****************************************************************************//
+//  AlertMessage
+//*****************************************************************************//
+static NSString *const alertMessage = @"\n Tested by : ";
+static NSString *const alertOkButtonText = @"Ok";
+
+//*****************************************************************************//
+//  Report Generator
+//*****************************************************************************//
 
 #pragma mark - Report Generator file -
 /// Template file name
@@ -38,6 +60,8 @@ static NSString *const reportFileName = @"%@-TestReport.html";
 static NSString *const templatePlaceHolderAppName = @"#AppName#";
 static NSString *const templatePlaceHolderVersion = @"#VersionNumber#";
 static NSString *const templatePlaceHolderDate = @"#Date#";
+static NSString *const templatePlaceHolderName = @"#Name#";
+static NSString *const templatePlaceHolderDevice = @"#Device#";
 static NSString *const templatePlaceHolderTestCase = @"<TR></TR>";
 
 /// Test case row.
@@ -69,5 +93,6 @@ static NSString *const emptyString = @"";
 static NSString *const notAvailableString = @"N/A";
 static NSString *const statusPass = @"PASS";
 static NSString *const statusFail = @"FAIL";
+static NSString *const iOSName = @"iOS ";
 
 #endif

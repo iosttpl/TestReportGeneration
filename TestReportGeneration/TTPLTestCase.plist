@@ -9,7 +9,7 @@
 		<key>Objective</key>
 		<string>Login with correct username and password</string>
 		<key>ExpectedResult</key>
-		<string>Application should allow the user enter the main page of the application.</string>
+		<string>Application should allow the user to enter the main page.</string>
 	</dict>
     <key>2</key>
     <dict>
@@ -18,7 +18,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>3</key>
     <dict>
@@ -27,7 +27,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>4</key>
     <dict>
@@ -36,7 +36,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>5</key>
     <dict>
@@ -45,7 +45,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>6</key>
     <dict>
@@ -54,7 +54,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>7</key>
     <dict>
@@ -63,7 +63,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>8</key>
     <dict>
@@ -72,7 +72,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>9</key>
     <dict>
@@ -81,7 +81,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>10</key>
     <dict>
@@ -90,7 +90,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>11</key>
     <dict>
@@ -99,7 +99,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>12</key>
     <dict>
@@ -108,7 +108,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>13</key>
     <dict>
@@ -117,7 +117,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>14</key>
     <dict>
@@ -126,7 +126,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
     <key>15</key>
     <dict>
@@ -135,7 +135,7 @@
         <key>Objective</key>
         <string>Login with correct username and password</string>
         <key>ExpectedResult</key>
-        <string>Application should allow the user enter the main page of the application.</string>
+        <string>Application should allow the user to enter the main page.</string>
     </dict>
 </dict>
 </plist>

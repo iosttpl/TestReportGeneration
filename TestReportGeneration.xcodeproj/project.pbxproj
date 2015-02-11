@@ -18,6 +18,7 @@
 		5060B0AE1A889494006660C7 /* TTPLTestReportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060B0AD1A889494006660C7 /* TTPLTestReportManager.m */; };
 		5060B0B21A889B5D006660C7 /* TTPLTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060B0B11A889B5D006660C7 /* TTPLTestCase.m */; };
 		5060B0B91A88E188006660C7 /* TTPLReportFileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060B0B81A88E188006660C7 /* TTPLReportFileGenerator.m */; };
+		5080465B1A8B40C800EA3B9B /* DeviceModelList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5080465A1A8B40C800EA3B9B /* DeviceModelList.plist */; };
 		50BA16EF1A89C75D005C733B /* TTPLReportTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 50BA16EE1A89C75D005C733B /* TTPLReportTemplate.html */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		5060B0B11A889B5D006660C7 /* TTPLTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPLTestCase.m; sourceTree = "<group>"; };
 		5060B0B71A88E188006660C7 /* TTPLReportFileGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTPLReportFileGenerator.h; sourceTree = "<group>"; };
 		5060B0B81A88E188006660C7 /* TTPLReportFileGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPLReportFileGenerator.m; sourceTree = "<group>"; };
+		5080465A1A8B40C800EA3B9B /* DeviceModelList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceModelList.plist; sourceTree = "<group>"; };
 		50BA16EE1A89C75D005C733B /* TTPLReportTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TTPLReportTemplate.html; sourceTree = "<group>"; };
 		50BA16F11A8A08EA005C733B /* TRConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRConstant.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 		5060B0AF1A889499006660C7 /* TRManager */ = {
 			isa = PBXGroup;
 			children = (
+				5080465A1A8B40C800EA3B9B /* DeviceModelList.plist */,
 				5060B0A91A88935A006660C7 /* TTPLTestCase.plist */,
 				5060B0AC1A889494006660C7 /* TTPLTestReportManager.h */,
 				5060B0AD1A889494006660C7 /* TTPLTestReportManager.m */,
@@ -266,6 +269,7 @@
 				5060B0AA1A88935A006660C7 /* TTPLTestCase.plist in Resources */,
 				5060B08F1A889326006660C7 /* Main.storyboard in Resources */,
 				5060B0941A889326006660C7 /* LaunchScreen.xib in Resources */,
+				5080465B1A8B40C800EA3B9B /* DeviceModelList.plist in Resources */,
 				5060B0911A889326006660C7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
