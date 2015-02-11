@@ -31,8 +31,6 @@
               comments:nil];
   }
 
-  [[TTPLTestReportManager sharedInstance] generateReport];
-
   return YES;
 }
 

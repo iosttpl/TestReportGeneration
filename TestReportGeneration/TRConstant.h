@@ -16,6 +16,8 @@
 #pragma mark - Configuration
 // You want to enable reporter then set this flag TRUE
 static const BOOL disableReportGenerator = NO;
+/// Enable draggable window button to generate report
+static const BOOL enableReportButton = YES;
 
 //*****************************************************************************//
 //  Report Manager
@@ -39,6 +41,11 @@ static NSString *const emailBody =
     @"Please find an attachment here. \n \n -------- \n Thanks";
 
 static NSString *const mimeType = @"text/html";
+
+static const NSInteger draggableViewSize = 75;
+static const float draggableViewFontSize = 14;
+static const float draggableViewCornorRadius = 38.0f;
+static NSString *const draggableViewMessage = @"Generate Report";
 
 //*****************************************************************************//
 //  AlertMessage

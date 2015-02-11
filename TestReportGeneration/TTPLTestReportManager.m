@@ -10,6 +10,7 @@
 #import "TTPLTestCase.h"
 #import "TTPLReportFileGenerator.h"
 #import "TRConstant.h"
+#import <UIView+draggable.h>
 
 @interface TTPLTestReportManager () {
   /// Store test case result object in dictionary based on the testcase ID.
@@ -17,6 +18,9 @@
 
   /// TTPLTestCase.plist file content.
   NSDictionary *_testCaseDictionary;
+
+  /// Draggable view
+  UIView *_draggableView;
 }
 
 @end
@@ -44,8 +48,48 @@
     NSString *path =
         [[NSBundle mainBundle] pathForResource:testCaseListFileName ofType:nil];
     _testCaseDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+
+    if (enableReportButton) {
+      UIWindow *keyWindow = [UIApplication sharedApplication].windows[0];
+      dispatch_after(
+          dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
+          dispatch_get_main_queue(),
+          ^{ [self addDraggableViewOnWindow:keyWindow]; });
+    }
   }
   return self;
+}
+
+- (void)addDraggableViewOnWindow:(UIWindow *)keyWindow {
+  _draggableView = nil;
+  _draggableView = [[UIView alloc]
+      initWithFrame:CGRectMake(
+                        CGRectGetMaxX(keyWindow.frame) - draggableViewSize,
+                        CGRectGetMaxY(keyWindow.frame) - draggableViewSize,
+                        draggableViewSize, draggableViewSize)];
+  _draggableView.layer.cornerRadius = draggableViewCornorRadius;
+  _draggableView.backgroundColor = [UIColor lightGrayColor];
+  [_draggableView enableDragging];
+  CGRect cagingRect = keyWindow.frame;
+  [_draggableView setCagingArea:cagingRect];
+  [keyWindow addSubview:_draggableView];
+
+  UIButton *reportGenerateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  CGRect buttonRect = CGRectZero;
+  buttonRect.size.height = draggableViewSize;
+  buttonRect.size.width = draggableViewSize;
+  [reportGenerateButton setFrame:buttonRect];
+  reportGenerateButton.layer.cornerRadius = _draggableView.layer.cornerRadius;
+  [reportGenerateButton setTitle:draggableViewMessage
+                        forState:UIControlStateNormal];
+  [reportGenerateButton.titleLabel
+      setFont:[UIFont boldSystemFontOfSize:draggableViewFontSize]];
+  reportGenerateButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+  reportGenerateButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  [reportGenerateButton addTarget:self
+                           action:@selector(generateReport)
+                 forControlEvents:UIControlEventTouchDownRepeat];
+  [_draggableView addSubview:reportGenerateButton];
 }
 
 #pragma mark - Test Case Update -
@@ -98,7 +142,7 @@
 
 #pragma mark - Send Mail With Report -
 - (void)openMailWithReport {
-
+  _draggableView.hidden = YES;
   NSString *filePath = [TTPLReportFileGenerator reportFilePath];
 
   if ([[NSFileManager defaultManager] fileExistsAtPath:filePath] &&
@@ -134,7 +178,13 @@
   if (error) {
     NSLog(@"Mail compose error : %@", error);
   }
-  [controller dismissViewControllerAnimated:YES completion:nil];
+  if (result != MFMailComposeResultCancelled) {
+    [_testResultDictionary removeAllObjects];
+  }
+  [controller dismissViewControllerAnimated:YES
+                                 completion:^{
+                                     _draggableView.hidden = enableReportButton;
+                                 }];
 }
 
 #pragma mark - Alert View Delegate -
@@ -153,7 +203,8 @@
   if (isReportGenerated) {
     /// Once file created remove all the existing testcase model from the
     /// dictionary
-    [_testResultDictionary removeAllObjects];
+
+    [[TTPLTestReportManager sharedInstance] openMailWithReport];
   }
 }
 
