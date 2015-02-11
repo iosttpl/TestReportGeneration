@@ -51,15 +51,16 @@
 
     if (enableReportButton) {
       UIWindow *keyWindow = [UIApplication sharedApplication].windows[0];
-      dispatch_after(
-          dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
-          dispatch_get_main_queue(),
-          ^{ [self addDraggableViewOnWindow:keyWindow]; });
+      dispatch_async(dispatch_get_main_queue(), ^{
+          /// Add draggable view on the main thread.
+          [self addDraggableViewOnWindow:keyWindow];
+      });
     }
   }
   return self;
 }
 
+#pragma mark - Draggable view -
 - (void)addDraggableViewOnWindow:(UIWindow *)keyWindow {
   _draggableView = nil;
   _draggableView = [[UIView alloc]
@@ -183,7 +184,8 @@
   }
   [controller dismissViewControllerAnimated:YES
                                  completion:^{
-                                     _draggableView.hidden = !enableReportButton;
+                                     _draggableView.hidden =
+                                         !enableReportButton;
                                  }];
 }
 
