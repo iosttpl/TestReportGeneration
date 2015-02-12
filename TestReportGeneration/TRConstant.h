@@ -37,7 +37,7 @@ static NSString *const objective = @"Objective";
 static NSString *const expectedResult = @"ExpectedResult";
 
 /// Device Model List
-static NSString *const deviceModelListFileName = @"DeviceModelList.plist";
+static NSString *const deviceModelListFileName = @"DeviceTypes.plist";
 
 /// Email
 static NSString *const emailSubject = @"%@ - Test Report";
