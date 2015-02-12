@@ -22,7 +22,9 @@ static const BOOL enableReportButton = YES;
 //*****************************************************************************//
 //  Queue Names
 //*****************************************************************************//
-static char const *TRTestCaseUpdateQueue = "com.testcase.testcaseupdatequeue";
+static char const *TRTestCaseUpdateQueue = "com.testCase.testCaseUpdateQueue";
+static char const *TRTestReportGeneratorQueue =
+    "com.testCase.testReportGenerator";
 
 //*****************************************************************************//
 //  Report Manager
@@ -42,7 +44,7 @@ static NSString *const deviceModelListFileName = @"DeviceTypes.plist";
 /// Email
 static NSString *const emailSubject = @"%@ - Test Report";
 static NSString *const emailBody =
-    @"Hi, \n \n \"%@\" application test report has been generated. "
+    @"Hi, \n \n \"%@\" application test report generated. "
     @"Please find an attachment here. \n \n -------- \n Thanks";
 
 static NSString *const mimeType = @"text/html";

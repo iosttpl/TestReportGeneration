@@ -132,8 +132,12 @@
 
     /// Updated report
     reportString = [reportString
-        stringByReplacingOccurrencesOfString:templatePlaceHolderTestCase
-                                  withString:testCaseString];
+        stringByReplacingOccurrencesOfString:[templatePlaceHolderTestCase
+                                                     lowercaseString]
+                                  withString:testCaseString
+                                     options:NSCaseInsensitiveSearch
+                                       range:NSMakeRange(0,
+                                                         reportString.length)];
   }
 
   return reportString;

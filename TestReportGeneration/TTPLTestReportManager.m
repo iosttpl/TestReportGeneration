@@ -27,6 +27,8 @@
 
   CGFloat _draggableButtonMaxX;
   CGFloat _draggableButtonMaxY;
+
+  dispatch_queue_t _testCaseUpdateQueue;
 }
 
 @end
@@ -54,6 +56,8 @@
     NSString *path =
         [[NSBundle mainBundle] pathForResource:testCaseListFileName ofType:nil];
     _testCaseDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+
+    _testCaseUpdateQueue = dispatch_queue_create(TRTestCaseUpdateQueue, 0);
 
     if (enableReportButton) {
       /// Default properties fo draggable view.
@@ -143,6 +147,7 @@
                 inputs:(NSDictionary *)inputs
                 status:(BOOL)status
               comments:(NSString *)comments {
+
   BOOL isReportUpdated = NO;
   if (!testCaseId.length) {
     /// Test case id should not be empty
@@ -158,48 +163,51 @@
   }
 
   isReportUpdated = YES;
-
-  /// If the test case failed before then no need to update test case with the
-  /// current current status.
-  TTPLTestCase *testCase = _testResultDictionary[testCaseId];
-  if (testCase) {
-    if (!testCase.tcStatus) {
-      return isReportUpdated;
-    } else {
-      /// Update dynamic inputs.
-      testCase.tcInputs = inputs;
-      testCase.tcStatus = status;
-      testCase.tcComments = comments;
-    }
-  } else {
-    /// Create test case model and store it on the dictionary by using test case
-    /// id.
-    testCase = [[TTPLTestCase alloc] init];
-    testCase.tcId = testCaseId;
-    testCase.tcCategory = testCaseDetailDictionary[category];
-    testCase.tcObjective = testCaseDetailDictionary[objective];
-    testCase.tcExpectedResult = testCaseDetailDictionary[expectedResult];
-    testCase.tcInputs = inputs;
-    testCase.tcStatus = status;
-    testCase.tcComments = comments;
-  }
-  _testResultDictionary[testCaseId] = testCase;
-
+  dispatch_async(_testCaseUpdateQueue, ^{
+      /// If the test case failed before then no need to update test case with
+      /// the
+      /// current current status.
+      TTPLTestCase *testCase = _testResultDictionary[testCaseId];
+      if (testCase) {
+        if (testCase.tcStatus) {
+          /// Update dynamic inputs.
+          testCase.tcInputs = inputs;
+          testCase.tcStatus = status;
+          testCase.tcComments = comments;
+          _testResultDictionary[testCaseId] = testCase;
+        }
+      } else {
+        /// Create test case model and store it on the dictionary by using test
+        /// case
+        /// id.
+        testCase = [[TTPLTestCase alloc] init];
+        testCase.tcId = testCaseId;
+        testCase.tcCategory = testCaseDetailDictionary[category];
+        testCase.tcObjective = testCaseDetailDictionary[objective];
+        testCase.tcExpectedResult = testCaseDetailDictionary[expectedResult];
+        testCase.tcInputs = inputs;
+        testCase.tcStatus = status;
+        testCase.tcComments = comments;
+        _testResultDictionary[testCaseId] = testCase;
+      }
+  });
   return isReportUpdated;
 }
 
 #pragma mark - Report Generator -
 - (void)generateReport {
-  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  NSString *appName = info[keyOfBundleName];
-  UIAlertView *testerNameAlertView =
-      [[UIAlertView alloc] initWithTitle:appName
-                                 message:alertMessage
-                                delegate:self
-                       cancelButtonTitle:alertOkButtonText
-                       otherButtonTitles:nil, nil];
-  testerNameAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-  [testerNameAlertView show];
+  dispatch_async(dispatch_get_main_queue(), ^{
+      NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+      NSString *appName = info[keyOfBundleName];
+      UIAlertView *testerNameAlertView =
+          [[UIAlertView alloc] initWithTitle:appName
+                                     message:alertMessage
+                                    delegate:self
+                           cancelButtonTitle:alertOkButtonText
+                           otherButtonTitles:nil, nil];
+      testerNameAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+      [testerNameAlertView show];
+  });
 }
 
 #pragma mark - Send Mail With Report -
@@ -260,15 +268,18 @@
       self.testerName = notAvailableString;
     }
   }
-  // Create Report file
-  BOOL isReportGenerated = [TTPLReportFileGenerator
-      generateReportStringWithTestCaseDictionary:_testResultDictionary];
-  if (isReportGenerated) {
-    /// Once file created remove all the existing testcase model from the
-    /// dictionary
-
-    [[TTPLTestReportManager sharedInstance] openMailWithReport];
-  }
+  dispatch_async(dispatch_queue_create(TRTestReportGeneratorQueue, 0), ^{
+      // Create Report file
+      BOOL isReportGenerated = [TTPLReportFileGenerator
+          generateReportStringWithTestCaseDictionary:_testResultDictionary];
+      if (isReportGenerated) {
+        /// Once file created remove all the existing testcase model from the
+        /// dictionary
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[TTPLTestReportManager sharedInstance] openMailWithReport];
+        });
+      }
+  });
 }
 
 #pragma mark - Draggable View Property -
