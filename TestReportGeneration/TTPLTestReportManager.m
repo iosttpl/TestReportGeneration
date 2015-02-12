@@ -10,7 +10,6 @@
 #import "TTPLTestCase.h"
 #import "TTPLReportFileGenerator.h"
 #import "TRConstant.h"
-#import <UIView+draggable.h>
 
 @interface TTPLTestReportManager () {
   /// Store test case result object in dictionary based on the testcase ID.
