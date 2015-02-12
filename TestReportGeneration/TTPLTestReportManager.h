@@ -31,6 +31,15 @@
 /// Report generator name.
 @property(nonatomic, strong) NSString *testerName;
 
+/// Draggable view background color
+@property(nonatomic, strong) UIColor *draggableViewBackGroundColor;
+
+/// Draggable view message text color
+@property(nonatomic, strong) UIColor *draggableViewTextColor;
+
+/// Draggable view message
+@property(nonatomic, strong) NSString *draggableViewMessage;
+
 /// @name Getter
 
 /*!

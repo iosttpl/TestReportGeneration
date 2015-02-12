@@ -19,8 +19,8 @@
   /// TTPLTestCase.plist file content.
   NSDictionary *_testCaseDictionary;
 
-  /// Draggable view
-  UIView *_draggableView;
+  /// Draggable button
+  UIButton *_draggableButton;
 }
 
 @end
@@ -49,6 +49,11 @@
         [[NSBundle mainBundle] pathForResource:testCaseListFileName ofType:nil];
     _testCaseDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
 
+    /// Default properties fo draggable view.
+    _draggableViewBackGroundColor = [UIColor lightGrayColor];
+    _draggableViewMessage = draggableViewMessage;
+    _draggableViewTextColor = [UIColor whiteColor];
+
     if (enableReportButton) {
       UIWindow *keyWindow = [UIApplication sharedApplication].windows[0];
       dispatch_async(dispatch_get_main_queue(), ^{
@@ -62,35 +67,44 @@
 
 #pragma mark - Draggable view -
 - (void)addDraggableViewOnWindow:(UIWindow *)keyWindow {
-  _draggableView = nil;
-  _draggableView = [[UIView alloc]
-      initWithFrame:CGRectMake(
-                        CGRectGetMaxX(keyWindow.frame) - draggableViewSize,
-                        CGRectGetMaxY(keyWindow.frame) - draggableViewSize,
-                        draggableViewSize, draggableViewSize)];
-  _draggableView.layer.cornerRadius = draggableViewCornorRadius;
-  _draggableView.backgroundColor = [UIColor lightGrayColor];
-  [_draggableView enableDragging];
-  CGRect cagingRect = keyWindow.frame;
-  [_draggableView setCagingArea:cagingRect];
-  [keyWindow addSubview:_draggableView];
-
-  UIButton *reportGenerateButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  CGRect buttonRect = CGRectZero;
-  buttonRect.size.height = draggableViewSize;
-  buttonRect.size.width = draggableViewSize;
-  [reportGenerateButton setFrame:buttonRect];
-  reportGenerateButton.layer.cornerRadius = _draggableView.layer.cornerRadius;
-  [reportGenerateButton setTitle:draggableViewMessage
-                        forState:UIControlStateNormal];
-  [reportGenerateButton.titleLabel
+  _draggableButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  CGRect buttonRect =
+      CGRectMake(CGRectGetMaxX(keyWindow.frame) - draggableViewSize,
+                 CGRectGetMaxY(keyWindow.frame) - draggableViewSize,
+                 draggableViewSize, draggableViewSize);
+  [_draggableButton setFrame:buttonRect];
+  [_draggableButton setTitle:self.draggableViewMessage
+                    forState:UIControlStateNormal];
+  [_draggableButton.titleLabel
       setFont:[UIFont boldSystemFontOfSize:draggableViewFontSize]];
-  reportGenerateButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-  reportGenerateButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  [reportGenerateButton addTarget:self
-                           action:@selector(generateReport)
-                 forControlEvents:UIControlEventTouchDownRepeat];
-  [_draggableView addSubview:reportGenerateButton];
+  [_draggableButton addTarget:self
+                       action:@selector(generateReport)
+             forControlEvents:UIControlEventTouchDownRepeat];
+  [_draggableButton addTarget:self
+                       action:@selector(wasDragged:withEvent:)
+             forControlEvents:UIControlEventTouchDragInside];
+  _draggableButton.backgroundColor = self.draggableViewBackGroundColor;
+  _draggableButton.titleLabel.textColor = self.draggableViewTextColor;
+  _draggableButton.layer.cornerRadius = draggableViewCornorRadius;
+  _draggableButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+  _draggableButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  [keyWindow addSubview:_draggableButton];
+}
+
+- (void)wasDragged:(UIButton *)button withEvent:(UIEvent *)event {
+  // get the touch
+  UITouch *touch = [[event touchesForView:button] anyObject];
+
+  // get delta
+  CGPoint previousLocation = [touch previousLocationInView:button];
+  CGPoint location = [touch locationInView:button];
+  CGFloat delta_x = location.x - previousLocation.x;
+  CGFloat delta_y = location.y - previousLocation.y;
+
+  // move button
+  CGFloat moveToX = button.center.x + delta_x;
+  CGFloat moveToY = button.center.y + delta_y;
+  button.center = CGPointMake(moveToX, moveToY);
 }
 
 #pragma mark - Test Case Update -
@@ -143,7 +157,7 @@
 
 #pragma mark - Send Mail With Report -
 - (void)openMailWithReport {
-  _draggableView.hidden = YES;
+  _draggableButton.hidden = YES;
   NSString *filePath = [TTPLReportFileGenerator reportFilePath];
 
   if ([[NSFileManager defaultManager] fileExistsAtPath:filePath] &&
@@ -184,7 +198,7 @@
   }
   [controller dismissViewControllerAnimated:YES
                                  completion:^{
-                                     _draggableView.hidden =
+                                     _draggableButton.hidden =
                                          !enableReportButton;
                                  }];
 }
@@ -208,6 +222,24 @@
 
     [[TTPLTestReportManager sharedInstance] openMailWithReport];
   }
+}
+
+#pragma mark - Draggable View Property -
+- (void)setDraggableViewBackGroundColor:
+            (UIColor *)draggableViewBackGroundColor {
+  _draggableViewBackGroundColor = draggableViewBackGroundColor;
+  [_draggableButton setBackgroundColor:draggableViewBackGroundColor];
+}
+
+- (void)setDraggableViewMessage:(NSString *)draggableViewMessage {
+  _draggableViewMessage = draggableViewMessage;
+  [_draggableButton setTitle:draggableViewMessage
+                    forState:UIControlStateNormal];
+}
+
+- (void)setDraggableViewTextColor:(UIColor *)draggableViewTextColor {
+  _draggableViewTextColor = draggableViewTextColor;
+  [_draggableButton.titleLabel setTextColor:draggableViewTextColor];
 }
 
 @end
