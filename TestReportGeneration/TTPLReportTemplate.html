@@ -5,8 +5,11 @@
         </TITLE>
         <STYLE type="text/css">
             .testResultTable {
-                border: 1px solid black;
+                border: 1px solid #50AE35;
                 width: 100%;
+            }
+            .tableHeader {
+                color : black;
             }
             .testResultTableRow {
                 text-align:center;
@@ -21,32 +24,39 @@
                 background: #FF2400;
                 color : white;
             }
+            .tarentoColor {
+                color : #50AE35;
+            }
+        
+            .acandoColor {
+                color : #FF7400;
+            }
+    
         </STYLE>
     </HEAD>
     <BODY>
-        
+    <DIV CLASS = "tarentoColor">
     <CENTER>
         <H1>#AppName#</H1>
     </CENTER>
     <CENTER>
-        <H3>Version #VersionNumber# </H3>
+        <H3>Version <SPAN CLASS="acandoColor"> #VersionNumber# </SPAN></H3>
     </CENTER>
     <CENTER>
-        <H5>Report generated on #Date# </H5>
+        <H5>Report generated on <SPAN CLASS="acandoColor"> #Date# </SPAN></H5>
     </CENTER>
     <CENTER>
-        <H5>Tested by : #Name# <br> <br>Tested on : #Device# </H5>
+        <H5>Tested by : <SPAN CLASS="acandoColor"> #Name# <br> <br> </SPAN> Tested on : <SPAN CLASS="acandoColor">#Device# </SPAN></H5>
     </CENTER>
-    
+   </DIV>
     <TABLE CLASS="testResultTable" BORDER CELLSPACING="0">
-        <TH CLASS="">ID</TH>
-        <TH CLASS="">Module</TH>
-        <TH CLASS="">Objective</TH>
-        <TH CLASS="">Expected Result</TH>
-        <TH CLASS="">Inputs</TH>
-        <TH CLASS="">Status</TH>
-        <TH CLASS="">Comments</TH>
+        <TH CLASS="tableHeader">ID</TH>
+        <TH CLASS="tableHeader">Module</TH>
+        <TH CLASS="tableHeader">Objective</TH>
+        <TH CLASS="tableHeader">Expected Result</TH>
+        <TH CLASS="tableHeader">Inputs</TH>
+        <TH CLASS="tableHeader">Status</TH>
+        <TH CLASS="tableHeader">Comments</TH>
         <TR></TR>
     </TABLE>
-    </BODY>
 </HTML>
