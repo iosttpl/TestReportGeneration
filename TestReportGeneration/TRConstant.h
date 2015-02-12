@@ -20,6 +20,11 @@ static const BOOL disableReportGenerator = NO;
 static const BOOL enableReportButton = YES;
 
 //*****************************************************************************//
+//  Queue Names
+//*****************************************************************************//
+static char const *TRTestCaseUpdateQueue = "com.testcase.testcaseupdatequeue";
+
+//*****************************************************************************//
 //  Report Manager
 //*****************************************************************************//
 

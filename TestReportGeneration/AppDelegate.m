@@ -30,6 +30,7 @@
                 status:(i % 4) ? YES : NO
               comments:nil];
   }
+    
   [TTPLTestReportManager sharedInstance].draggableViewMessage = @"Test Report";
   [TTPLTestReportManager sharedInstance].draggableViewBackGroundColor =
       [UIColor blackColor];

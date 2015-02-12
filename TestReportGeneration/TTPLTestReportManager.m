@@ -20,6 +20,13 @@
 
   /// Draggable button
   UIButton *_draggableButton;
+
+  /// Draggable button max and min co-ordinates
+  CGFloat _draggableButtonMinX;
+  CGFloat _draggableButtonMinY;
+
+  CGFloat _draggableButtonMaxX;
+  CGFloat _draggableButtonMaxY;
 }
 
 @end
@@ -66,6 +73,8 @@
 
 #pragma mark - Draggable view -
 - (void)addDraggableViewOnWindow:(UIWindow *)keyWindow {
+  [self calcualteButtonMaxMinCoordinates];
+
   _draggableButton = [UIButton buttonWithType:UIButtonTypeCustom];
   CGRect buttonRect =
       CGRectMake(CGRectGetMaxX(keyWindow.frame) - draggableViewSize,
@@ -91,6 +100,14 @@
   [keyWindow addSubview:_draggableButton];
 }
 
+- (void)calcualteButtonMaxMinCoordinates {
+  UIWindow *keyWindow = [UIApplication sharedApplication].windows[0];
+  _draggableButtonMinX = keyWindow.frame.origin.x;
+  _draggableButtonMaxX = keyWindow.frame.size.width;
+  _draggableButtonMinY = keyWindow.frame.origin.y;
+  _draggableButtonMaxY = keyWindow.frame.size.height;
+}
+
 - (void)wasDragged:(UIButton *)button withEvent:(UIEvent *)event {
   // get the touch
   UITouch *touch = [[event touchesForView:button] anyObject];
@@ -104,6 +121,20 @@
   // move button
   CGFloat moveToX = button.center.x + delta_x;
   CGFloat moveToY = button.center.y + delta_y;
+
+  if (moveToX < _draggableButtonMinX) {
+    moveToX = _draggableButtonMinX;
+  } else if (moveToX > _draggableButtonMaxX) {
+    moveToX = _draggableButtonMaxX;
+  }
+
+  if (moveToY < _draggableButtonMinY) {
+    moveToY = _draggableButtonMinY;
+  } else if (moveToY > _draggableButtonMaxY) {
+    moveToY = _draggableButtonMaxY;
+  }
+
+  NSLog(@"%f ,%f", moveToX, moveToY);
   button.center = CGPointMake(moveToX, moveToY);
 }
 
