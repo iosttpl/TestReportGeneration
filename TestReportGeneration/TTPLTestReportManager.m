@@ -48,12 +48,12 @@
         [[NSBundle mainBundle] pathForResource:testCaseListFileName ofType:nil];
     _testCaseDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
 
-    /// Default properties fo draggable view.
-    _draggableViewBackGroundColor = [UIColor lightGrayColor];
-    _draggableViewMessage = draggableViewMessage;
-    _draggableViewTextColor = [UIColor whiteColor];
-
     if (enableReportButton) {
+      /// Default properties fo draggable view.
+      _draggableViewBackGroundColor = [UIColor lightGrayColor];
+      _draggableViewMessage = draggableViewMessage;
+      _draggableViewTextColor = [UIColor whiteColor];
+
       UIWindow *keyWindow = [UIApplication sharedApplication].windows[0];
       dispatch_async(dispatch_get_main_queue(), ^{
           /// Add draggable view on the main thread.
@@ -83,7 +83,8 @@
                        action:@selector(wasDragged:withEvent:)
              forControlEvents:UIControlEventTouchDragInside];
   _draggableButton.backgroundColor = self.draggableViewBackGroundColor;
-  _draggableButton.titleLabel.textColor = self.draggableViewTextColor;
+  [_draggableButton setTitleColor:self.draggableViewTextColor
+                         forState:UIControlStateNormal];
   _draggableButton.layer.cornerRadius = draggableViewCornorRadius;
   _draggableButton.titleLabel.textAlignment = NSTextAlignmentCenter;
   _draggableButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -238,7 +239,8 @@
 
 - (void)setDraggableViewTextColor:(UIColor *)draggableViewTextColor {
   _draggableViewTextColor = draggableViewTextColor;
-  [_draggableButton.titleLabel setTextColor:draggableViewTextColor];
+  [_draggableButton setTitleColor:draggableViewTextColor
+                         forState:UIControlStateNormal];
 }
 
 @end
