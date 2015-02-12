@@ -122,6 +122,7 @@
   CGFloat moveToX = button.center.x + delta_x;
   CGFloat moveToY = button.center.y + delta_y;
 
+  // Min & Max coordinates check.
   if (moveToX < _draggableButtonMinX) {
     moveToX = _draggableButtonMinX;
   } else if (moveToX > _draggableButtonMaxX) {
@@ -134,7 +135,6 @@
     moveToY = _draggableButtonMaxY;
   }
 
-  NSLog(@"%f ,%f", moveToX, moveToY);
   button.center = CGPointMake(moveToX, moveToY);
 }
 
@@ -157,16 +157,32 @@
     return isReportUpdated;
   }
 
-  /// Create test case model and store it on the dictionary by using test case
-  /// id.
-  TTPLTestCase *testCase = [[TTPLTestCase alloc] init];
-  testCase.tcId = testCaseId;
-  testCase.tcCategory = testCaseDetailDictionary[category];
-  testCase.tcObjective = testCaseDetailDictionary[objective];
-  testCase.tcExpectedResult = testCaseDetailDictionary[expectedResult];
-  testCase.tcInputs = inputs;
-  testCase.tcStatus = status;
-  testCase.tcComments = comments;
+  isReportUpdated = YES;
+
+  /// If the test case failed before then no need to update test case with the
+  /// current current status.
+  TTPLTestCase *testCase = _testResultDictionary[testCaseId];
+  if (testCase) {
+    if (!testCase.tcStatus) {
+      return isReportUpdated;
+    } else {
+      /// Update dynamic inputs.
+      testCase.tcInputs = inputs;
+      testCase.tcStatus = status;
+      testCase.tcComments = comments;
+    }
+  } else {
+    /// Create test case model and store it on the dictionary by using test case
+    /// id.
+    testCase = [[TTPLTestCase alloc] init];
+    testCase.tcId = testCaseId;
+    testCase.tcCategory = testCaseDetailDictionary[category];
+    testCase.tcObjective = testCaseDetailDictionary[objective];
+    testCase.tcExpectedResult = testCaseDetailDictionary[expectedResult];
+    testCase.tcInputs = inputs;
+    testCase.tcStatus = status;
+    testCase.tcComments = comments;
+  }
   _testResultDictionary[testCaseId] = testCase;
 
   return isReportUpdated;

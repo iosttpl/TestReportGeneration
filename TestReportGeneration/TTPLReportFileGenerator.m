@@ -57,10 +57,11 @@
                                 withString:version];
 
   // Name
-  reportString = [reportString
+  reportString = [[reportString
       stringByReplacingOccurrencesOfString:templatePlaceHolderName
                                 withString:[TTPLTestReportManager
-                                                   sharedInstance].testerName];
+                                                   sharedInstance]
+                                               .testerName] capitalizedString];
 
   // Device
   UIDevice *currentDevice = [UIDevice currentDevice];

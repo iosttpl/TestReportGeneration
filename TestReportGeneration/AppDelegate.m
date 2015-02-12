@@ -30,7 +30,15 @@
                 status:(i % 4) ? YES : NO
               comments:nil];
   }
-    
+
+  for (int i = 1; i <= 15; i++) {
+    [[TTPLTestReportManager sharedInstance]
+        testCaseWithID:[NSString stringWithFormat:@"%d", i]
+                inputs:input
+                status:(i % 4) ? YES : NO
+              comments:nil];
+  }
+
   [TTPLTestReportManager sharedInstance].draggableViewMessage = @"Test Report";
   [TTPLTestReportManager sharedInstance].draggableViewBackGroundColor =
       [UIColor blackColor];

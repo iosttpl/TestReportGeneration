@@ -42,7 +42,7 @@ static NSString *const deviceModelListFileName = @"DeviceTypes.plist";
 /// Email
 static NSString *const emailSubject = @"%@ - Test Report";
 static NSString *const emailBody =
-    @"Hi, \n \n %@ test report has been generated. "
+    @"Hi, \n \n \"%@\" application test report has been generated. "
     @"Please find an attachment here. \n \n -------- \n Thanks";
 
 static NSString *const mimeType = @"text/html";
@@ -55,7 +55,7 @@ static NSString *const draggableViewMessage = @"Generate Report";
 //*****************************************************************************//
 //  AlertMessage
 //*****************************************************************************//
-static NSString *const alertMessage = @"\n Tested by : ";
+static NSString *const alertMessage = @"\n Please enter the name of tester :";
 static NSString *const alertOkButtonText = @"Ok";
 
 //*****************************************************************************//
